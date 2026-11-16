@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="FITFINAL.Views.HomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="{StaticResource PageBackground}">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- HEADER -->
+        <Grid Grid.Row="0"
+              BackgroundColor="{StaticResource PrimaryLight}"
+              Padding="20,40,20,16">
+            <Label Text="Resumen general"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource TextPrimary}" />
+        </Grid>
+
+        <!-- CONTENIDO -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="20" Spacing="16">
+
+                <!-- Tarjeta de balance -->
+                <Border StrokeThickness="1"
+                        Stroke="#E0E0E0"
+                        Background="{StaticResource CardBackground}"
+                        StrokeShape="RoundRectangle 12">
+                    <VerticalStackLayout Padding="16" Spacing="6">
+                        <Label Text="Balance actual"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource TextPrimary}" />
+                        <Label Text="{Binding Balance, StringFormat='${0:F2}'}"
+                               FontSize="28"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource PrimaryColor}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Ingresos y gastos -->
+                <Grid ColumnDefinitions="*,*"
+                      ColumnSpacing="16">
+
+                    <Border StrokeThickness="1"
+                            Stroke="#E0E0E0"
+                            Background="{StaticResource CardBackground}"
+                            StrokeShape="RoundRectangle 12">
+                        <VerticalStackLayout Padding="16">
+                            <Label Text="Ingresos"
+                                   FontAttributes="Bold" />
+                            <Label Text="{Binding TotalIncomes, StringFormat='${0:F2}'}"
+                                   TextColor="{StaticResource AccentColor}"
+                                   FontSize="20"
+                                   FontAttributes="Bold" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border StrokeThickness="1"
+                            Stroke="#E0E0E0"
+                            Background="{StaticResource CardBackground}"
+                            StrokeShape="RoundRectangle 12">
+                        <VerticalStackLayout Padding="16">
+                            <Label Text="Gastos"
+                                   FontAttributes="Bold" />
+                            <Label Text="{Binding TotalExpenses, StringFormat='${0:F2}'}"
+                                   TextColor="{StaticResource DangerColor}"
+                                   FontSize="20"
+                                   FontAttributes="Bold" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                </Grid>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
+
+</ContentPage>

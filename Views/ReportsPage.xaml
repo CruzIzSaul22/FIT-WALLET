@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="FITFINAL.Views.ReportsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="{StaticResource PageBackground}">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- HEADER -->
+        <Grid Grid.Row="0"
+              BackgroundColor="{StaticResource PrimaryLight}"
+              Padding="20,40,20,16">
+            <Label Text="Reportes"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource TextPrimary}" />
+        </Grid>
+
+        <!-- CONTENIDO -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="20" Spacing="16">
+
+                <Label Text="Gastos por categoría"
+                       FontAttributes="Bold"
+                       FontSize="18" />
+
+                <CollectionView ItemsSource="{Binding ExpensesByCategory}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border StrokeThickness="1"
+                                    Stroke="#E0E0E0"
+                                    Background="{StaticResource CardBackground}"
+                                    StrokeShape="RoundRectangle 12"
+                                    Margin="0,8,0,0">
+                                <VerticalStackLayout Padding="16" Spacing="4">
+
+                                    <Label Text="{Binding Key}"
+                                           FontAttributes="Bold" />
+
+                                    <Label Text="{Binding Value, StringFormat='${0:F2}'}"
+                                           TextColor="{StaticResource DangerColor}" />
+
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
+
+</ContentPage>

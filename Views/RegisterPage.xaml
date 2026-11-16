@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="FITFINAL.Views.RegisterPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="{StaticResource PageBackground}">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- HEADER -->
+        <Grid Grid.Row="0"
+              BackgroundColor="{StaticResource PrimaryLight}"
+              Padding="20,40,20,16">
+            <Label Text="Registrar movimiento"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource TextPrimary}" />
+        </Grid>
+
+        <!-- FORMULARIO -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="20" Spacing="16">
+
+                <Border StrokeThickness="1"
+                        Stroke="#E0E0E0"
+                        Background="{StaticResource CardBackground}"
+                        StrokeShape="RoundRectangle 12">
+                    <VerticalStackLayout Padding="16" Spacing="12">
+
+                        <Entry Placeholder="Descripción"
+                               Text="{Binding Description}" />
+
+                        <Entry Placeholder="Monto"
+                               Keyboard="Numeric"
+                               Text="{Binding Amount}" />
+
+                        <Picker Title="Tipo"
+                                ItemsSource="{Binding Types}"
+                                SelectedItem="{Binding Type}" />
+
+                        <Picker Title="Categoría"
+                                ItemsSource="{Binding Categories}"
+                                SelectedItem="{Binding Category}" />
+
+                        <Button Text="Guardar movimiento"
+                                Command="{Binding SaveCommand}"
+                                BackgroundColor="{StaticResource PrimaryColor}"
+                                TextColor="White"
+                                CornerRadius="12" />
+
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
+
+</ContentPage>

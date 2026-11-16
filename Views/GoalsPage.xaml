@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="FITFINAL.Views.GoalsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="{StaticResource PageBackground}">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- HEADER -->
+        <Grid Grid.Row="0"
+              BackgroundColor="{StaticResource PrimaryLight}"
+              Padding="20,40,20,16">
+            <Label Text="Metas de ahorro"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource TextPrimary}" />
+        </Grid>
+
+        <!-- CONTENIDO -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="20" Spacing="16">
+
+                <!-- Crear nueva meta -->
+                <Border StrokeThickness="1"
+                        Stroke="#E0E0E0"
+                        Background="{StaticResource CardBackground}"
+                        StrokeShape="RoundRectangle 12">
+                    <VerticalStackLayout Padding="16" Spacing="8">
+
+                        <Label Text="Nueva meta"
+                               FontAttributes="Bold" />
+
+                        <Entry Placeholder="Nombre de la meta"
+                               Text="{Binding NewGoalName}" />
+
+                        <Entry Placeholder="Cantidad objetivo"
+                               Keyboard="Numeric"
+                               Text="{Binding NewGoalTarget}" />
+
+                        <Button Text="Agregar meta"
+                                Command="{Binding AddGoalCommand}" />
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Lista de metas -->
+                <CollectionView ItemsSource="{Binding Goals}"
+                                SelectionMode="Single"
+                                SelectedItem="{Binding SelectedGoal}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border StrokeThickness="1"
+                                    Stroke="#E0E0E0"
+                                    Background="{StaticResource CardBackground}"
+                                    StrokeShape="RoundRectangle 12"
+                                    Margin="0,8,0,0">
+                                <VerticalStackLayout Padding="16" Spacing="6">
+
+                                    <Grid ColumnDefinitions="*,Auto,Auto">
+                                        <Label Grid.Column="0"
+                                               Text="{Binding Name}"
+                                               FontAttributes="Bold" />
+
+                                        <Label Grid.Column="1"
+                                               Text="{Binding Progress, StringFormat='${0:F2}'}"
+                                               HorizontalTextAlignment="End" />
+
+                                        <Label Grid.Column="2"
+                                               Text="{Binding Target, StringFormat='/${0:F2}'}"
+                                               TextColor="{StaticResource TextSecondary}" />
+                                    </Grid>
+
+                                    <ProgressBar Progress="{Binding Percentage}"
+                                                 ProgressColor="{StaticResource AccentColor}" />
+
+                                    <Label Text="Completada"
+                                           IsVisible="{Binding IsCompleted}"
+                                           TextColor="{StaticResource AccentColor}"
+                                           FontAttributes="Bold"
+                                           FontSize="12" />
+
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Aportar a meta -->
+                <Border StrokeThickness="1"
+                        Stroke="#E0E0E0"
+                        Background="{StaticResource CardBackground}"
+                        StrokeShape="RoundRectangle 12">
+                    <VerticalStackLayout Padding="16" Spacing="8">
+
+                        <Label Text="Aportar a meta seleccionada"
+                               FontAttributes="Bold" />
+
+                        <Entry Placeholder="Monto a aportar"
+                               Keyboard="Numeric"
+                               Text="{Binding ContributionAmount}" />
+
+                        <Button Text="Aportar"
+                                Command="{Binding ContributeCommand}" />
+
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
+
+</ContentPage>
